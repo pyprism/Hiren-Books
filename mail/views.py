@@ -25,7 +25,7 @@ class Login(FormView):
 class Logout(View):
     def get(self, request, *args, **kwargs):
         logout(request)
-        return HttpResponseRedirect(settings.LOGOUT_REDIRECT_URL)
+        return HttpResponseRedirect('/')
 
 class LoggedInMixin(object):
 
