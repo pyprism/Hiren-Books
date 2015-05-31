@@ -1,6 +1,6 @@
 # date 28 May, 2015
 from django.shortcuts import render
-from django.views.generic import FormView
+from django.views.generic import FormView, View
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
