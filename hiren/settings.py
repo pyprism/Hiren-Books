@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import json
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,12 +21,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#dluxwn7m4*z@%4)2%$7h88)ll$tupgxt0if+qxtr!7kz2_hp1'
+try:
+    with open('config.local.json') as f:
+        JSON_DATA = json.load(f)
+except FileNotFoundError:
+    with open('config.json') as f:
+        JSON_DATA = json.load(f)
+SECRET_KEY = os.environ.get('SECRET_KEY', JSON_DATA['secret_key'])
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,7 +45,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mail'
+    'debug_toolbar',
+    'book'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,10 +98,10 @@ if 'TRAVIS' in os.environ:
 else:
     DATABASES = {
         'default': {
-            'NAME': 'hiren_mail',
+            'NAME': 'hiren_books',
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'USER': 'prism',
-            'PASSWORD': 'testpass',
+            'USER': 'hiren',
+            'PASSWORD': 'demo',
             'HOST': 'localhost',
             'PORT':     '',
             }
@@ -118,13 +127,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+)
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-LOGIN_REDIRECT_URL = '/dashboard'
-
-LOGOUT_REDIRECT_URL = '/'
+# media settings
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 LOGIN_URL = '/'
 
