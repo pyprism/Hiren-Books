@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>Books list</h2>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Finished</th>
+            <th>Date Added</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for book in books %}
+                <tr>
+                <td><a href="/media/{{ book.slug }}"> {{ book.name }}</a></td>
+                <td>{{ book.finished }}</td>
+                <td>{{ book.date }}</td>
+                </tr>
+            {% endfor %}
+
+    </table>
+
+    <ul class="pagination">
+        {% if books.has_previous %}
+            <li><a href="?page={{ books.previous_page_number }}">previous</a></li>
+        {% endif %}
+
+        <span class="current">
+
+        </span>
+
+        {% if books.has_next %}
+            <li><a href="?page={{ books.next_page_number }}">next</a></li>
+        {% endif %}
+        <br>
+     Page {{ books.number }} of {{ books.paginator.num_pages }}.
+    </ul>
+
+{% endblock %}
