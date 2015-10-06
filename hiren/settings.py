@@ -101,9 +101,9 @@ else:
             'NAME': 'hiren_books',
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'USER': 'hiren',
-            'PASSWORD': 'demo',
+            'PASSWORD': 'hiren',
             'HOST': 'localhost',
-            'PORT':     '',
+            'PORT': '',
             }
     }
 
