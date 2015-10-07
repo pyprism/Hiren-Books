@@ -11,7 +11,8 @@ class Book(models.Model):
     finished = models.BooleanField(default=False)
     page_no = models.IntegerField(default=0)
     pdf = models.FileField(upload_to='hiren/%Y/%m/%d')
-    date = models.DateField(auto_now_add=True)
+    added_at = models.DateField(auto_now_add=True)
+    finished_at = models.DateField()
 
     def save(self):
         super().save()
