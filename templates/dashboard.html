@@ -7,7 +7,8 @@
         <tr>
             <th>Name</th>
             <th>Finished</th>
-            <th>Date Added</th>
+            <th>Added at</th>
+            <th>Finished at</th>
         </tr>
         </thead>
         <tbody>
@@ -16,7 +17,8 @@
                 <tr>
                 <td><a href="/media/{{ book.slug }}"> {{ book.name }}</a></td>
                 <td>{{ book.finished }}</td>
-                <td>{{ book.date }}</td>
+                <td>{{ book.added_at }}</td>
+                <td>{{ book.finished_at }}</td>
                 </tr>
             {% endfor %}
 
