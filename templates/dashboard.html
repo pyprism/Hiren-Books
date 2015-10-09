@@ -15,7 +15,7 @@
 
             {% for book in books %}
                 <tr>
-                <td><a href="/media/{{ book.slug }}"> {{ book.name }}</a></td>
+                <td><a href="/book/{{ book.slug }}"> {{ book.name }}</a></td>
                 <td>{{ book.finished }}</td>
                 <td>{{ book.added_at }}</td>
                 <td>{{ book.finished_at }}</td>
