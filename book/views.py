@@ -6,6 +6,7 @@ from book.models import Book
 from book.forms import AddForms, BookForms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import IntegrityError
+from django.forms import ValidationError
 # Create your views here.
 
 
@@ -70,7 +71,6 @@ def add_book(request):
                 messages.info(request, 'File Saved')
             except IntegrityError:
                 messages.error(request, "The book is already exits")
-
         else:
             messages.error(request, "A kitten died in hell !")
         return redirect('/add/')
@@ -87,4 +87,5 @@ def book(request, slug):
     :return:
     """
     book = Book.objects.get(slug=slug)
-    return render(request, 'book.html', {'book': book})
+    book_file = '/media/' + str(book.pdf)
+    return render(request, 'book.html', {'book': book_file})
