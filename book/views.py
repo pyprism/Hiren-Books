@@ -82,10 +82,12 @@ def add_book(request):
 def book(request, slug):
     """
     Serve book, take notes etc
-    :param request:
-    :param slug:
-    :return:
     """
-    book = Book.objects.get(slug=slug)
-    book_file = '/media/' + str(book.pdf)
-    return render(request, 'book.html', {'book': book_file})
+    if request.method == 'POST':
+        print(request.POST['note'])
+        print(request.POST['finished', False])
+        return redirect(request.path)
+    else:
+        book = Book.objects.get(slug=slug)
+        book_file = '/media/' + str(book.pdf)
+        return render(request, 'book.html', {'book_file': book_file, 'book': book})
