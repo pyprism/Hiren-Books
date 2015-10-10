@@ -104,6 +104,7 @@ else:
             'PASSWORD': 'hiren',
             'HOST': 'localhost',
             'PORT': '',
+            'CONN_MAX_AGE': 600,
             }
     }
 
