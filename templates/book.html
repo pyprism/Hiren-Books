@@ -1,6 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-<iframe seamless src="hiren/2015/10/06/Mastering_BeagleBone_Robotics.pdf" width="400" height="600">
- <p>Your browser does not support iframes.</p>
-</iframe>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Editor</a></li>
+            <li><a href="#tabs-2">Book</a></li>
+            <li><a href="#tabs-3">Note</a></li>
+        </ul>
+        <div id="tabs-1">
+            <form action="#" method="post"> {% csrf_token %}
+            <textarea name="note" id="summernote" >
+                {{ book.note }}
+            </textarea>
+                <level>Number of page read</level>
+                <input type="number" name="page_no" value="{{ book.page_no }}" >
+                <br/>
+                <level>Finished ?</level>
+                <input type="checkbox" name="finished" checked="">
+                <br/>
+                <input class="button" type="submit" value="Save" />
+            </form>
+        </div>
+        <div id="tabs-2">
+            <form method="get" action="{{ book_file }}">
+                <button type="submit">Read the  pdf!</button>
+            </form>
+        </div>
+
+        <div id="tabs-3">
+            <h5>
+                Note: {{ book.note }}
+            </h5>
+            <h5>
+                Page read: {{ book.page_no }}
+            </h5>
+        </div>
+    </div>
+
 {% endblock %}
