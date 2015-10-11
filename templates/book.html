@@ -14,12 +14,16 @@
                 <level>Number of page read</level>
                 <input type="number" name="page_no" value="{{ book.page_no }}" >
                 <br/>
-                <level>Finished ?</level>
-                <input type="checkbox" name="finished" checked="">
-                <br/>
                 <input class="button" type="submit" value="Save" />
             </form>
+            <br>
+            {% if book.finished %}
+            <button type="button" class="btn btn-info">Finished</button>
+            {% else %}
+                <a href="finished"><button type="button" class="btn btn-info">Reading</button> </a>
+            {% endif %}
         </div>
+
         <div id="tabs-2">
             <form method="get" action="{{ book_file }}">
                 <button type="submit">Read the  pdf!</button>
@@ -28,7 +32,9 @@
 
         <div id="tabs-3">
             <h5>
+                {% autoescape off %}
                 Note: {{ book.note }}
+                {% endautoescape %}
             </h5>
             <h5>
                 Page read: {{ book.page_no }}
