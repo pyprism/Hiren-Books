@@ -107,4 +107,4 @@ def book_finished(request, slug):
     book.finished = True
     book.finished_at = datetime.date.today()
     book.save()
-    return redirect('/book/' + slug)
+    return redirect('/book/' + slug + "/")
