@@ -24,6 +24,6 @@ urlpatterns = [
     url(r"^logout$", views.logout),
     url(r"^dashboard/$", views.dashboard),
     url(r"^add/$", views.add_book),
-    url(r"^book/(?P<slug>[^\.]+)", views.book),
-
+    url(r"^book/(?P<slug>[^\.]+)/finished", views.book_finished),
+    url(r"^book/(?P<slug>[^\.]+)/", views.book),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
