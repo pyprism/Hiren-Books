@@ -3,10 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from django.contrib import messages
 from book.models import Book
-from book.forms import AddForms, BookForms
+from book.forms import AddForms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import IntegrityError
-from django.forms import ValidationError
+import datetime
 # Create your views here.
 
 
@@ -84,10 +84,27 @@ def book(request, slug):
     Serve book, take notes etc
     """
     if request.method == 'POST':
-        print(request.POST['note'])
-        print(request.POST['finished', False])
+        book = Book.objects.get(slug=slug)
+        book.note = request.POST['note']
+        book.page_no = request.POST['page_no']
+        book.save()
         return redirect(request.path)
     else:
         book = Book.objects.get(slug=slug)
         book_file = '/media/' + str(book.pdf)
         return render(request, 'book.html', {'book_file': book_file, 'book': book})
+
+
+@login_required
+def book_finished(request, slug):
+    """
+    handle book "finish" in model
+    :param request:
+    :param slug:
+    :return:
+    """
+    book = Book.objects.get(slug=slug)
+    book.finished = True
+    book.finished_at = datetime.date.today()
+    book.save()
+    return redirect('/book/' + slug)
