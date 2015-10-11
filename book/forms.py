@@ -4,12 +4,6 @@ from django.forms import ModelForm
 import magic
 
 
-class BookForms(forms.Form):
-    class Meta:
-        model = Book
-        fields = ['name', 'note']
-
-
 class AddForms(ModelForm):
 
     def clean_file(self):
