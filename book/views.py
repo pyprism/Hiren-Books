@@ -41,7 +41,7 @@ def dashboard(request):
     :param request:
     :return:
     """
-    books_list = Book.objects.all()
+    books_list = Book.objects.order_by('id')
     paginator = Paginator(books_list, 10)
     page = request.GET.get('page')
 
