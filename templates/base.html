@@ -42,6 +42,25 @@
 
     {% block content %}{% endblock %}
 </div>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.pyprism.me/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 3]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.pyprism.me/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
 <script src="{% static 'bower/jquery/dist/jquery.min.js' %}"></script>
 <script src="{% static 'bower/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'jquery-ui-1.11.4.custom/jquery-ui.min.js' %}"></script>
