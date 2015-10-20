@@ -32,7 +32,7 @@ form .field {
   margin-bottom: 15px;
 }
 form .field label {
-  text-transform: uppercase;
+  //text-transform: uppercase;
   position: absolute;
   top: 0;
   left: 0;
