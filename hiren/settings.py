@@ -88,6 +88,7 @@ if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'ATOMIC_REQUESTS': True,
             'NAME':     'travisci',
             'USER':     'postgres',
             'PASSWORD': '',
@@ -99,6 +100,7 @@ else:
     DATABASES = {
         'default': {
             'NAME': 'hiren_books',
+            'ATOMIC_REQUESTS': True,
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'USER': 'hiren',
             'PASSWORD': 'hiren',
