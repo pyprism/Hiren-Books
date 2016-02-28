@@ -1,7 +1,7 @@
-Django==1.9.1
+Django==1.9.2
 django-debug-toolbar==1.4
 psycopg2==2.6.1
 sqlparse==0.1.18
-wheel==0.26.0
+wheel==0.29.0
 python-magic==0.4.10
 uwsgi==2.0.12
