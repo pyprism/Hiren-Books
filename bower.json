@@ -17,6 +17,6 @@
     "bootstrap": "~3.3.4",
     "bootstrap-markdown": "~2.9.0",
     "font-awesome": "~4.3.0",
-    "summernote": "~0.6.16"
+    "summernote": "~0.8.1"
   }
 }
