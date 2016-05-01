@@ -1,3 +1,6 @@
 {
-  "secret_key": ""
+  "secret_key": "",
+  "db_name": "",
+  "db_user": "",
+  "db_pass": ""
 }
