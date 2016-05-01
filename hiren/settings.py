@@ -22,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 try:
-    with open('config.local.json') as f:
+    with open(BASE_DIR + '/' + 'config.local.json') as f:
         JSON_DATA = json.load(f)
 except FileNotFoundError:
-    with open('config.json') as f:
+    with open(BASE_DIR + '/' + 'config.json') as f:
         JSON_DATA = json.load(f)
 SECRET_KEY = os.environ.get('SECRET_KEY', JSON_DATA['secret_key'])
 
@@ -99,11 +99,11 @@ if 'TRAVIS' in os.environ:
 else:
     DATABASES = {
         'default': {
-            'NAME': 'hiren_books',
+            'NAME': JSON_DATA['db_name'],
             'ATOMIC_REQUESTS': True,
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'USER': 'hiren',
-            'PASSWORD': 'hiren',
+            'USER': JSON_DATA['db_user'],
+            'PASSWORD': JSON_DATA['db_pass'],
             'HOST': 'localhost',
             'PORT': '',
             'CONN_MAX_AGE': 600,
