@@ -11,7 +11,7 @@
             <textarea name="note" id="summernote" >
                 {{ book.note }}
             </textarea>
-                <level>Number of page read</level>
+                <level>Current Page</level>
                 <input type="number" name="page_no" value="{{ book.page_no }}" >
                 <br/>
                 <input class="button" type="submit" value="Save" />
@@ -38,7 +38,7 @@
                 {% endautoescape %}
             </h5>
             <h5>
-                Page read: {{ book.page_no }}
+                Current Page: {{ book.page_no }}
             </h5>
         </div>
     </div>
