@@ -5,3 +5,4 @@ sqlparse==0.1.19
 wheel==0.29.0
 python-magic==0.4.11
 uwsgi==2.0.12
+mock==2.0.0
