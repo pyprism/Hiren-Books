@@ -21,7 +21,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user:
             auth.login(request, user)
-            return redirect('/dashboard')
+            return redirect('/dashboard/')
         else:
             messages.error(request, 'Username/Password is not valid!')
             return redirect('/')
