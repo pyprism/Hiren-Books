@@ -6,6 +6,7 @@ from django.core.files.storage import Storage
 from django.contrib.auth.models import User
 from book.views import *
 from book.models import Book
+from django.test import Client
 import mock
 
 
@@ -45,3 +46,38 @@ class IndexPageTest(TestCase):
     def test_uses_login_template(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'login.html')
+
+
+class LoginViewTest(TestCase):
+
+    def setUp(self):
+        User.objects.create_user('hiren', 'a@b.com', 'password')
+        self.c = Client()
+
+    def test_login_url_resolves_to_login_view(self):
+        found = resolve('/login/')
+        self.assertEqual(found.func, login)
+
+    def test_auth_works(self):
+        respond = self.c.post('/login/', {'username': 'hiren', 'password': 'password'})
+        self.assertRedirects(respond, '/dashboard/')
+
+    def test_redirect_for_unauthenticated_user_works(self):
+        response = self.c.get('/dashboard/')
+        self.assertRedirects(response, '/?next=/dashboard/')
+
+    def test_redirect_works_for_bad_auth(self):
+        respond = self.c.post('/login/', {'username': 'hiren', 'password': 'bad pass'})
+        self.assertRedirects(respond, '/')
+
+
+class LogoutViewTest(TestCase):
+
+    def setUp(self):
+        User.objects.create_user('hiren', 'a@b.com', 'password')
+        self.c = Client()
+
+    def test_redirect_works(self):
+        self.c.post('/login/', {'username': 'hiren', 'password': 'password'})
+        respond = self.c.get('/logout')
+        self.assertRedirects(respond, '/')
