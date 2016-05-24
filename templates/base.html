@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'bower/summernote/dist/summernote.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'bower/summernote/dist/summernote-bs3.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'highlightjs/styles/brown_paper.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style/blockquote.css' %}" />
 </head>
 <body>
 
@@ -27,9 +28,9 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="https://github.com/pyprism/Hiren-Books" class="fa fa-github" target="_blank"> Source Code</a></li>
                     {% if user.is_authenticated %}
-                    <li><a href="/add/" class="fa fa-plus-square-o"> Add </a></li>
+                    <li><a href="/add_pdf/" class="fa fa-plus-square-o"> Add New Book</a></li>
+                    <li><a href="/add_online/" class="fa fa-plus-square-o"> Add New Online Book</a></li>
                     <li><a href="/dashboard/" class="fa fa-dashboard"> Dashboard </a></li>
                     <li><a href="/logout" class="fa fa-sign-out"> Logout </a></li>
                     {% endif %}
