@@ -25,10 +25,13 @@
         </div>
 
         <div id="tabs-2">
-            {% comment %}<form method="get" action="{{ book_file }}">
-                <button type="submit">Read the  pdf!</button>
-            </form>{% endcomment %}
+            {% if url %}
+                {{ url }}
+            <a href="{{ url }}" target="_blank">Read {{ book.name }} </a>
+            {% else %}
             <a href="{{ book_file }}" target="_blank">Read {{ book.name }} </a>
+            {% endif %}
+
         </div>
 
         <div id="tabs-3">
