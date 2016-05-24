@@ -5,12 +5,13 @@ import datetime
 
 
 class Book(models.Model):
-    name = models.CharField(max_length=400, blank=False, null=False)
+    name = models.CharField(max_length=400)
     slug = models.CharField(max_length=150, unique=True)
     note = models.TextField()
     finished = models.BooleanField(default=False)
     page_no = models.IntegerField(default=0)
-    pdf = models.FileField(upload_to='hiren/%Y/%m/%d')
+    pdf = models.FileField(upload_to='hiren/%Y/%m/%d', null=True, blank=True)
+    url = models.URLField(max_length=400, null=True, blank=True)
     added_at = models.DateField(auto_now_add=True)
     finished_at = models.DateField(null=True, blank=True)
 

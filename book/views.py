@@ -57,9 +57,31 @@ def dashboard(request):
 
 
 @login_required
-def add_book(request):
+def add_book_pdf(request):
     """
     Add book
+    :param request:
+    :return:
+    """
+    if request.method == "POST":
+        form = AddForms(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                form.save()
+                messages.info(request, 'File Saved')
+            except IntegrityError:
+                messages.error(request, "The book is already exits")
+        else:
+            messages.error(request, "A kitten died in hell !")
+        return redirect('/add/')
+    else:
+        return render(request, 'add.html')
+
+
+@login_required
+def add_book_url(request):
+    """
+    Add online book
     :param request:
     :return:
     """
