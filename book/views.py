@@ -95,9 +95,9 @@ def add_book_url(request):
                 messages.error(request, "The book is already exits")
         else:
             messages.error(request, "A kitten died in hell !")
-        return redirect('/add/')
+        return redirect('/add_online/')
     else:
-        return render(request, 'add.html')
+        return render(request, 'add_online.html')
 
 
 @login_required
@@ -114,7 +114,7 @@ def book(request, slug):
     else:
         book = Book.objects.get(slug=slug)
         book_file = '/media/' + str(book.pdf)
-        return render(request, 'book.html', {'book_file': book_file, 'book': book})
+        return render(request, 'book.html', {'book_file': book_file, 'book': book, 'url': book.url})
 
 
 @login_required
