@@ -1,0 +1,5 @@
+[Unit]
+Description=uWSGI instance to serve Hiren-Books
+
+[Service]
+ExecStart=/bin/bash -c 'cd /home/prism/prod/Hiren-Books; source .env/bin/activate; uwsgi --ini hiren.ini'
