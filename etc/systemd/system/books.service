@@ -2,6 +2,7 @@
 Description=uWSGI instance to serve Hiren-Books
 
 [Service]
+User=prism
 ExecStart=/bin/bash -c 'cd /home/prism/prod/Hiren-Books; source .env/bin/activate; uwsgi --ini hiren.ini'
 
 [Install]
