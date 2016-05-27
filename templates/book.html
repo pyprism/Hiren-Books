@@ -11,8 +11,13 @@
             <textarea name="note" id="summernote" >
                 {{ book.note }}
             </textarea>
-                <level>Current Page</level>
+                {% if url %}
+                    <level>Current URL</level>
+                    <input type="url" name="current_url" value="{{ book.current_url }}" >
+                {% else %}
+                    <level>Current Page</level>
                 <input type="number" name="page_no" value="{{ book.page_no }}" >
+                {% endif %}
                 <br/>
                 <input class="button" type="submit" value="Save" />
             </form>
