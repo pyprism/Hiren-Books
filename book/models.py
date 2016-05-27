@@ -12,6 +12,7 @@ class Book(models.Model):
     page_no = models.IntegerField(default=0)
     pdf = models.FileField(upload_to='hiren/%Y/%m/%d', null=True, blank=True)
     url = models.URLField(max_length=2000, null=True, blank=True)
+    current_url = models.URLField(max_length=2000, null=True, blank=True)
     added_at = models.DateField(auto_now_add=True)
     finished_at = models.DateField(null=True, blank=True)
 
