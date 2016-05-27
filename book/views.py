@@ -73,7 +73,7 @@ def add_book_pdf(request):
                 messages.error(request, "The book is already exits")
         else:
             messages.error(request, "A kitten died in hell !")
-        return redirect('/add/')
+        return redirect('/add_pdf/')
     else:
         return render(request, 'add.html')
 
@@ -109,6 +109,7 @@ def book(request, slug):
         book = Book.objects.get(slug=slug)
         book.note = request.POST['note']
         book.page_no = request.POST['page_no']
+        book.current_url = request.POST['current_url']
         book.save()
         return redirect(request.path)
     else:
