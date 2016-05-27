@@ -6,7 +6,7 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Finished</th>
+            <th>Is Book is Finished</th>
             <th>Added at</th>
             <th>Finished at</th>
         </tr>
@@ -16,9 +16,17 @@
             {% for book in books %}
                 <tr>
                 <td><a href="/book/{{ book.slug }}/"> {{ book.name }}</a></td>
-                <td>{{ book.finished }}</td>
+                    {% if book.finished %}
+                <td> Yes </td>
+                    {% else %}
+                    <td> No</td>
+                    {% endif %}
                 <td>{{ book.added_at }}</td>
-                <td>{{ book.finished_at }}</td>
+                {% if book.finished_at == None %}
+                    <td> </td>
+                {% else %}
+                <td> {{ book.finished_at }}</td>
+                {%  endif %}
                 </tr>
             {% endfor %}
 
