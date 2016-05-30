@@ -15,17 +15,17 @@
                     <level>Current URL</level>
                     <input type="url" name="current_url" value="{{ book.current_url }}" >
                     <level>Current Page</level>
-                <input type="number" name="page_no" value="{{ book.page_no }}" >
+                    <input type="number" name="page_no" value="{{ book.page_no }}" >
                 {% else %}
                     <level>Current Page</level>
-                <input type="number" name="page_no" value="{{ book.page_no }}" >
+                    <input type="number" name="page_no" value="{{ book.page_no }}" >
                 {% endif %}
                 <br/>
                 <input class="button" type="submit" value="Save" />
             </form>
             <br>
             {% if book.finished %}
-            <button type="button" class="btn btn-info">Finished</button>
+                <button type="button" class="btn btn-info">Finished</button>
             {% else %}
                 <a href="finished"><button type="button" class="btn btn-info">Reading</button> </a>
             {% endif %}
@@ -33,21 +33,21 @@
 
         <div id="tabs-2">
             {% if url %}
-            <a href="{{ url }}" target="_blank">Read {{ book.name }} </a>
+                <a href="{{ url }}" target="_blank">Read {{ book.name }} </a>
             {% else %}
-            <a href="{{ book_file }}" target="_blank">Read {{ book.name }} </a>
+                <a href="{{ book_file }}" target="_blank">Read {{ book.name }} </a>
             {% endif %}
 
         </div>
 
         <div id="tabs-3">
             <h5>
-                {% autoescape off %}
-                Note: {{ book.note }}
-                {% endautoescape %}
+                Current Page: {{ book.page_no }}
             </h5>
             <h5>
-                Current Page: {{ book.page_no }}
+                {% autoescape off %}
+                    Note: {{ book.note }}
+                {% endautoescape %}
             </h5>
         </div>
     </div>
