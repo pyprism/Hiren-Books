@@ -109,7 +109,10 @@ def book(request, slug):
         book = Book.objects.get(slug=slug)
         book.note = request.POST['note']
         book.page_no = request.POST['page_no']
-        book.current_url = request.POST['current_url']
+        try:
+            book.current_url = request.POST['current_url']
+        except Exception:
+            pass
         book.save()
         return redirect(request.path)
     else:
