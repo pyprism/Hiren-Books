@@ -11,12 +11,14 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "static/bower"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.4",
-    "bootstrap-markdown": "~2.9.0",
-    "font-awesome": "~4.3.0",
-    "summernote": "~0.8.1"
-  }
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.3",
+    "summernote": "^0.8.1"
+  },
+  "description": "",
+  "main": ""
 }
