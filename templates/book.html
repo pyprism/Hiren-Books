@@ -42,7 +42,12 @@
 
         <div id="tabs-3">
             <h5>
+                {% if url %}
                 Current Page: {{ book.page_no }}
+                <br />Current URL: {{ book.current_url }}
+                {% else %}
+                Current Page: {{ book.page_no }}
+                {% endif %}
             </h5>
             <h5>
                 {% autoescape off %}
