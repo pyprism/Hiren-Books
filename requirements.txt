@@ -3,7 +3,7 @@ Django==1.10
 django-debug-toolbar==1.4
 =======
 Django==1.9.7
-django-debug-toolbar==1.5
+django-debug-toolbar==1.6
 >>>>>>> master
 psycopg2==2.6.2
 sqlparse==0.2.1
