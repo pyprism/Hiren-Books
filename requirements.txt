@@ -1,19 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-Django==1.10
+Django==1.10.3
 django-debug-toolbar==1.6
-=======
-Django==1.10.2
-=======
-Django==1.10.2
-=======
-Django==1.9.7
-<<<<<<< HEAD
-django-debug-toolbar==1.6
-=======
->>>>>>> master
->>>>>>> master
-django-debug-toolbar==1.5
 psycopg2==2.6.2
 sqlparse==0.2.2
 wheel==0.29.0
