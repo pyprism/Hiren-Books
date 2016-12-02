@@ -49,7 +49,7 @@ INSTALLED_APPS = (
     'book'
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -58,6 +58,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'hiren.urls'
@@ -146,3 +147,5 @@ MEDIA_URL = '/media/'
 LOGIN_URL = '/'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+INTERNAL_IPS = ['127.0.0.1']
