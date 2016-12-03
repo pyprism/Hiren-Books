@@ -16,7 +16,7 @@ class Book(models.Model):
     added_at = models.DateField(auto_now_add=True)
     finished_at = models.DateField(null=True, blank=True)
 
-    def save(self):
+    def save(self, **kwargs):
         super().save()
         date = datetime.date.today()
         self.slug = '%i/%i/%i/%s' % (
