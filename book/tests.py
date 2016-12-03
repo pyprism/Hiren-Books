@@ -100,8 +100,27 @@ class BookFinishedViewTest(TransactionTestCase):
 
     def test_get_method_works(self):
         slug = Book.objects.get(pk=1)
-        response = self.c.get('/book/' + slug.slug + '/finished')
-        self.assertEqual(response.status_code, 302)
+        response = self.c.get('/book/' + slug.slug + '/finished', follow=True)
+        self.assertEqual(response.redirect_chain[0][0], '/book/' + slug.slug + '/')
 
         book = Book.objects.get(pk=1)
         self.assertEqual(book.finished, True)
+
+
+class OnlineBookAddTest(TransactionTestCase):
+    """
+    Test add_book_url method works
+    """
+    reset_sequences = True
+
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+        self.c.login(username='hiren', password='bunny')
+
+    def test_online_book_creation_works(self):
+        response = self.c.post('/add_online/', data={'name': 'hiren', 'url': 'xyz.com'}, follow=True)
+        self.assertEqual(response.redirect_chain[0][0], '/add_online/')
+
+        book = Book.objects.count()
+        self.assertEqual(book, 1)
