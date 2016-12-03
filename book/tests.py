@@ -49,6 +49,9 @@ class IndexPageTest(TestCase):
 
 
 class LoginViewTest(TestCase):
+    """
+    Test for authentication
+    """
 
     def setUp(self):
         User.objects.create_user('hiren', 'a@b.com', 'password')
@@ -81,3 +84,24 @@ class LogoutViewTest(TestCase):
         self.c.post('/login/', {'username': 'hiren', 'password': 'password'})
         respond = self.c.get('/logout')
         self.assertRedirects(respond, '/')
+
+
+class BookFinishedViewTest(TransactionTestCase):
+    """
+    Test for book_finished method in view
+    """
+    reset_sequences = True
+
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+        self.c.login(username='hiren', password='bunny')
+        Book.objects.create(name="hiren")
+
+    def test_get_method_works(self):
+        slug = Book.objects.get(pk=1)
+        response = self.c.get('/book/' + slug.slug + '/finished')
+        self.assertEqual(response.status_code, 302)
+
+        book = Book.objects.get(pk=1)
+        self.assertEqual(book.finished, True)
