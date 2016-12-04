@@ -129,3 +129,7 @@ class OnlineBookAddTest(TransactionTestCase):
     def test_url_resolve_to_correct_view(self):
         found = resolve('/add_online/')
         self.assertEqual(found.func, add_book_url)
+
+    def test_view_returns_correct_template(self):
+        response = self.c.get('/add_online/')
+        self.assertTemplateUsed(response, 'add_online.html')
