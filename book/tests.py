@@ -102,6 +102,11 @@ class BookFinishedViewTest(TransactionTestCase):
         book = Book.objects.get(pk=1)
         self.assertEqual(book.finished, True)
 
+    def test_url_resolve_to_correct_view(self):
+        slug = Book.objects.get(pk=1)
+        found = resolve('/book/' + slug.slug + '/finished')
+        self.assertEqual(found.func, book_finished)
+
 
 class OnlineBookAddTest(TransactionTestCase):
     """
