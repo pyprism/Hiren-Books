@@ -153,3 +153,10 @@ class AddBookPDFViewTest(TransactionTestCase):
     def test_url_resolve_to_correct_view(self):
         found = resolve('/add_pdf/')
         self.assertEqual(found.func, add_book_pdf)
+
+    def test_online_book_creation_works(self):
+        response = self.c.post('/add_pdf/', data={'name': 'hiren', 'url': 'xyz.com'}, follow=True)
+        self.assertEqual(response.redirect_chain[0][0], '/add_pdf/')
+
+        book = Book.objects.count()
+        self.assertEqual(book, 1)
