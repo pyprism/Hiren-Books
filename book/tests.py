@@ -160,3 +160,26 @@ class AddBookPDFViewTest(TransactionTestCase):
 
         book = Book.objects.count()
         self.assertEqual(book, 1)
+
+
+class BookViewTest(TransactionTestCase):
+    """
+    test for book view
+    """
+    reset_sequences = True
+
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+        self.c.login(username='hiren', password='bunny')
+        Book.objects.create(name="hiren")
+
+    def test_view_returns_correct_template(self):
+        slug = Book.objects.get(id=1)
+        response = self.c.get('/book/' + slug.slug + '/')
+        self.assertTemplateUsed(response, 'book.html')
+
+    def test_url_resolve_to_correct_view(self):
+        slug = Book.objects.get(id=1)
+        found = resolve('/book/' + slug.slug + '/')
+        self.assertEqual(found.func, book)
