@@ -133,3 +133,19 @@ class OnlineBookAddTest(TransactionTestCase):
     def test_view_returns_correct_template(self):
         response = self.c.get('/add_online/')
         self.assertTemplateUsed(response, 'add_online.html')
+
+
+class AddBookPDFViewTest(TransactionTestCase):
+    """
+    Test for add_book_pdf
+    """
+    reset_sequences = True
+
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+        self.c.login(username='hiren', password='bunny')
+
+    def test_view_returns_correct_template(self):
+        response = self.c.get('/add_pdf/')
+        self.assertTemplateUsed(response, 'add.html')
