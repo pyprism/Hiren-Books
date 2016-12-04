@@ -1,13 +1,9 @@
 from django.core.urlresolvers import resolve
 from django.test import TestCase, TransactionTestCase
-from django.http import HttpRequest
-from django.core.files import File
-from django.core.files.storage import Storage
 from django.contrib.auth.models import User
 from book.views import *
 from book.models import Book
 from django.test import Client
-import mock
 
 
 class ModelTest(TransactionTestCase):
@@ -124,3 +120,7 @@ class OnlineBookAddTest(TransactionTestCase):
 
         book = Book.objects.count()
         self.assertEqual(book, 1)
+
+    def test_url_resolve_to_correct_view(self):
+        found = resolve('/add_online/')
+        self.assertEqual(found.func, add_book_url)
