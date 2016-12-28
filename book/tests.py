@@ -202,7 +202,6 @@ class AddVideoViewTest(TransactionTestCase):
         self.assertEqual(book, 1)
 
 
-
 class BookViewTest(TransactionTestCase):
     """
     test for book view
@@ -224,3 +223,11 @@ class BookViewTest(TransactionTestCase):
         slug = Book.objects.get(id=1)
         found = resolve('/book/' + slug.slug + '/')
         self.assertEqual(found.func, book)
+
+    def test_information_update_works(self):
+        slug = Book.objects.get(id=1)
+        response = self.c.post('/book/' + slug.slug + '/', data={'name': 'hiren',
+                                                                 'url': 'xyz.com', 'type': 'vid',
+                                                                 'note': 'hello hiren :D', 'page_no': 9,
+                                                                 'folder': None})
+        self.assertRedirects(response, '/book/' + slug.slug + '/')
