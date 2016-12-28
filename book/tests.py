@@ -35,6 +35,10 @@ class ModelTest(TransactionTestCase):
 
 class IndexPageTest(TestCase):
 
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+
     def test_root_url_resolves_to_index_page_view(self):
         found = resolve('/')
         self.assertEqual(found.func, index)
@@ -42,6 +46,11 @@ class IndexPageTest(TestCase):
     def test_uses_login_template(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'login.html')
+
+    def test_authenticated_user_redirected(self):
+        self.c.login(username='hiren', password='bunny')
+        response = self.c.get('/', follow=True)
+        self.assertRedirects(response, '/dashboard/')
 
 
 class LoginViewTest(TestCase):
