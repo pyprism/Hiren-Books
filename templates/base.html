@@ -7,13 +7,33 @@
     <title>Hiren: Books</title>
     {% load staticfiles %}
     <link rel="icon" href="{% static 'favicon.ico' %}">
-   <link rel="stylesheet" type="text/css" href="{% static 'style/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'bower/font-awesome/css/font-awesome.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'jquery-ui-1.11.4.custom/jquery-ui.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'bower/summernote/dist/summernote.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'bower/summernote/dist/summernote-bs3.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'highlightjs/styles/brown_paper.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'style/blockquote.css' %}" />
+
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  // tracker methods like "setCustomDimension" should be called before "trackPageView"
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.pyprism.me/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.pyprism.me/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
 </head>
 <body>
 
@@ -29,10 +49,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     {% if user.is_authenticated %}
-                    <li><a href="/add_pdf/" class="fa fa-plus-square-o"> Add New Book</a></li>
-                    <li><a href="/add_online/" class="fa fa-plus-square-o"> Add New Online Book</a></li>
-                    <li><a href="/dashboard/" class="fa fa-dashboard"> Dashboard </a></li>
-                    <li><a href="/logout" class="fa fa-sign-out"> Logout </a></li>
+                        <li><a href="/dashboard/" class="fa fa-dashboard"> Dashboard </a></li>
+                        <li><a href="/add_pdf/" class="fa fa-file-pdf-o"> Add New Book</a></li>
+                        <li><a href="/add_online/" class="fa fa-book"> Add New Online Book</a></li>
+                        <li><a href="/add_video/" class="fa fa-video-camera"> Add New Video Tutorial</a></li>
+                        <li><a href="/logout" class="fa fa-sign-out"> Logout </a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -44,23 +65,6 @@
 
     {% block content %}{% endblock %}
 </div>
-
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//piwik.pyprism.me/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 1]);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//piwik.pyprism.me/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
-
 
 <script src="{% static 'bower/jquery/dist/jquery.min.js' %}"></script>
 <script src="{% static 'bower/bootstrap/dist/js/bootstrap.min.js' %}"></script>
