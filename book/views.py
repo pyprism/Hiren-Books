@@ -70,7 +70,7 @@ def add_book_pdf(request):
         if form.is_valid():
             try:
                 form.save()
-                messages.info(request, 'File Saved')
+                messages.info(request, 'New book uploaded and saved')
             except IntegrityError:
                 messages.error(request, "The book is already exits")
         else:
@@ -88,11 +88,11 @@ def add_book_url(request):
     :return:
     """
     if request.method == "POST":
-        form = AddForms(request.POST, request.FILES)
+        form = AddForms(request.POST)
         if form.is_valid():
             try:
                 form.save()
-                messages.info(request, 'File Saved')
+                messages.info(request, 'New Book Added')
             except IntegrityError:
                 messages.error(request, "The book is already exits")
         else:
@@ -100,6 +100,27 @@ def add_book_url(request):
         return redirect('/add_online/')
     else:
         return render(request, 'add_online.html')
+
+
+@login_required
+def add_video(request):
+    """
+    Add video tutorial
+    :param request:
+    :return:
+    """
+    if request.method == "POST":
+        form = AddForms(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                messages.info(request, 'New video added')
+            except IntegrityError:
+                messages.error(request, "The video is already exits")
+        else:
+            messages.error(request, "A kitten died in hell !")
+        return redirect('/add_video/')
+    return render(request, 'add_video.html')
 
 
 @login_required
@@ -111,6 +132,8 @@ def book(request, slug):
         book = Book.objects.get(slug=slug)
         book.note = request.POST['note']
         book.page_no = request.POST['page_no']
+        book.type = request.POST['type']
+        book.folder = request.POST['folder']
         try:
             book.current_url = request.POST['current_url']
         except Exception:
