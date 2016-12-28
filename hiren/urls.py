@@ -25,6 +25,7 @@ urlpatterns = [
     url(r"^dashboard/$", views.dashboard, name="dashboard"),
     url(r"^add_pdf/$", views.add_book_pdf),
     url(r"^add_online/$", views.add_book_url),
+    url(r"^add_video/$", views.add_video),
     url(r"^book/(?P<slug>[^\.]+)/finished", views.book_finished),
     url(r"^book/(?P<slug>[^\.]+)/", views.book),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
