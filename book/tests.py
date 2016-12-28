@@ -129,7 +129,7 @@ class OnlineBookAddTest(TransactionTestCase):
         self.c.login(username='hiren', password='bunny')
 
     def test_online_book_creation_works(self):
-        response = self.c.post('/add_online/', data={'name': 'hiren', 'url': 'xyz.com'}, follow=True)
+        response = self.c.post('/add_online/', data={'name': 'hiren', 'url': 'xyz.com', 'type': 'net'}, follow=True)
         self.assertEqual(response.redirect_chain[0][0], '/add_online/')
 
         book = Book.objects.count()
@@ -163,12 +163,40 @@ class AddBookPDFViewTest(TransactionTestCase):
         found = resolve('/add_pdf/')
         self.assertEqual(found.func, add_book_pdf)
 
-    def test_online_book_creation_works(self):
-        response = self.c.post('/add_pdf/', data={'name': 'hiren', 'url': 'xyz.com'}, follow=True)
+    def test_book_creation_works(self):
+        response = self.c.post('/add_pdf/', data={'name': 'hiren', 'url': 'xyz.com', 'type': 'pdf'}, follow=True)
         self.assertEqual(response.redirect_chain[0][0], '/add_pdf/')
 
         book = Book.objects.count()
         self.assertEqual(book, 1)
+
+
+class AddVideoViewTest(TransactionTestCase):
+    """
+    Test for add_video
+    """
+    reset_sequences = True
+
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+        self.c.login(username='hiren', password='bunny')
+
+    def test_view_returns_correct_template(self):
+        response = self.c.get('/add_video/')
+        self.assertTemplateUsed(response, 'add_video.html')
+
+    def test_url_resolve_to_correct_view(self):
+        found = resolve('/add_video/')
+        self.assertEqual(found.func, add_video)
+
+    def test_video_creation_works(self):
+        response = self.c.post('/add_video/', data={'name': 'hiren', 'url': 'xyz.com', 'type': 'vid'}, follow=True)
+        self.assertEqual(response.redirect_chain[0][0], '/add_video/')
+
+        book = Book.objects.count()
+        self.assertEqual(book, 1)
+
 
 
 class BookViewTest(TransactionTestCase):
