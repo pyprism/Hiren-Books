@@ -78,6 +78,10 @@ class LoginViewTest(TestCase):
         respond = self.c.post('/login/', {'username': 'hiren', 'password': 'bad pass'})
         self.assertRedirects(respond, '/')
 
+    def test_view_returns_correct_template(self):
+        response = self.c.get('/')
+        self.assertTemplateUsed(response, 'login.html')
+
 
 class LogoutViewTest(TestCase):
 
