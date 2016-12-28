@@ -6,6 +6,7 @@
         <thead>
         <tr>
             <th>Name</th>
+            <th>Type</th>
             <th>Finished</th>
             <th>Added at</th>
             <th>Finished at</th>
@@ -16,6 +17,15 @@
             {% for book in books %}
                 <tr>
                 <td><a href="/book/{{ book.slug }}/"> {{ book.name }}</a></td>
+                {% if book.type == 'pdf' %}
+                <td>PDF</td>
+                {% elif book.type == 'net' %}
+                <td>Online Book</td>
+                {% elif book.type == 'vid' %}
+                <td>Video Tutorial</td>
+                {% elif book.type == 'con' %}
+                <td>Conf.</td>
+                {% endif %}
                     {% if book.finished %}
                 <td> Yes </td>
                     {% else %}
