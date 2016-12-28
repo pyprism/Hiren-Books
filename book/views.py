@@ -11,6 +11,8 @@ import datetime
 
 
 def index(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     return render(request, 'login.html')
 
 
