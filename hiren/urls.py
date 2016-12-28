@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^login/$', views.login),
     url(r"^logout$", views.logout),
-    url(r"^dashboard/$", views.dashboard),
+    url(r"^dashboard/$", views.dashboard, name="dashboard"),
     url(r"^add_pdf/$", views.add_book_pdf),
     url(r"^add_online/$", views.add_book_url),
     url(r"^book/(?P<slug>[^\.]+)/finished", views.book_finished),
