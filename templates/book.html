@@ -7,7 +7,7 @@
             <li><a href="#tabs-3">Note</a></li>
         </ul>
         <div id="tabs-1">
-            <form action="#" method="post"> {% csrf_token %}
+            <form class="form-inline" action="#" method="post"> {% csrf_token %}
             <textarea name="note" id="summernote" >
                 {{ book.note }}
             </textarea>
@@ -16,12 +16,19 @@
                     <input type="url" name="current_url" value="{{ book.current_url }}" >
                     <level>Current Page</level>
                     <input type="number" name="page_no" value="{{ book.page_no }}" >
+                    <level>Type</level>
+                    <input type="text" name="type" value="{{ book.type }}" >
+                    <level>Folder/File Name</level>
+                    <input type="text" name="folder" value="{{ book.folder }}" >
                 {% else %}
+                    <level>Type</level>
+                    <input type="type" name="type" value="{{ book.type }}" >
                     <level>Current Page</level>
                     <input type="number" name="page_no" value="{{ book.page_no }}" >
                 {% endif %}
                 <br/>
-                <input class="button" type="submit" value="Save" />
+                <br>
+                <input class="btn btn-default" type="submit" value="Update" />
             </form>
             <br>
             {% if book.finished %}
@@ -45,6 +52,7 @@
                 {% if url %}
                 Current Page: {{ book.page_no }}
                 <br />Current URL: {{ book.current_url }}
+                    <br/> Current Folder/File Name: {{ book.folder }}
                 {% else %}
                 Current Page: {{ book.page_no }}
                 {% endif %}
