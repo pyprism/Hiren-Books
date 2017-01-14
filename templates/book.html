@@ -38,12 +38,14 @@
             {% endif %}
         </div>
 
+        {% if book_file %}
         <div id="tabs-2">
             {% if url %}
                 <a href="{{ url }}" target="_blank">Read {{ book.name }} </a>
             {% else %}
                 <a href="{{ book_file }}" target="_blank">Read {{ book.name }} </a>
             {% endif %}
+        {% endif %}
 
         </div>
 
