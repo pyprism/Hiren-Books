@@ -130,12 +130,12 @@ def book(request, slug):
     """
     if request.method == 'POST':
         book = Book.objects.get(slug=slug)
-        book.note = request.POST['note']
-        book.page_no = request.POST['page_no']
-        book.type = request.POST['type']
-        book.folder = request.POST['folder']
+        book.note = request.POST.get('note')
+        book.page_no = request.POST.get('page_no')
+        book.type = request.POST.get('type')
+        book.folder = request.POST.get('folder')
         try:
-            book.current_url = request.POST['current_url']
+            book.current_url = request.POST.get('current_url')
         except Exception:
             pass
         book.save()
