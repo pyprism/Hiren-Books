@@ -3,7 +3,9 @@
     <div id="tabs" xmlns="http://www.w3.org/1999/html">
         <ul>
             <li><a href="#tabs-1">Editor</a></li>
-            <li><a href="#tabs-2">Book</a></li>
+            {% if book_file != '/media/' %}   
+               <li><a href="#tabs-2">Book</a></li>
+             {% endif %}
             <li><a href="#tabs-3">Note</a></li>
         </ul>
         <div id="tabs-1">
@@ -38,16 +40,17 @@
             {% endif %}
         </div>
 
-        {% if book_file %}
+        {% if book_file != '/media/' %}
         <div id="tabs-2">
             {% if url %}
                 <a href="{{ url }}" target="_blank">Read {{ book.name }} </a>
             {% else %}
                 <a href="{{ book_file }}" target="_blank">Read {{ book.name }} </a>
             {% endif %}
-        {% endif %}
+        
 
         </div>
+        {% endif %}
 
         <div id="tabs-3">
             <h5>
