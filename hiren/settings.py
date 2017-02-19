@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import json
+import raven
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -46,7 +47,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'book'
+    'book',
+    'raven.contrib.django.raven_compat',
 )
 
 MIDDLEWARE = (
@@ -146,6 +148,13 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL = '/'
 
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 INTERNAL_IPS = ['127.0.0.1']
+
+RAVEN_CONFIG = {
+    'dsn': JSON_DATA['sentry_dsn'],
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+}
