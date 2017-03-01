@@ -3,7 +3,7 @@ Django==1.10.5
 django-debug-toolbar==1.6
 mock==2.0.0
 pbr==2.0.0
-psycopg2==2.6.2
+psycopg2==2.7
 python-magic==0.4.12
 raven==6.0.0
 six==1.10.0
