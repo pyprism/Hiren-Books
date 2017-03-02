@@ -7,5 +7,5 @@ psycopg2==2.7
 python-magic==0.4.12
 raven==6.0.0
 six==1.10.0
-sqlparse==0.2.2
+sqlparse==0.2.3
 uWSGI==2.0.14
