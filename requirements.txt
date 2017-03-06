@@ -1,6 +1,6 @@
 contextlib2==0.5.4
 Django==1.10.6
-django-debug-toolbar==1.6
+django-debug-toolbar==1.7
 mock==2.0.0
 pbr==2.0.0
 psycopg2==2.7
