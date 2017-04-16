@@ -1,8 +1,7 @@
 /static/bower
 /media/hiren
-/config.local.json
+config.local.json
 # Logs
-logs
 *.log
 
 # Runtime data
