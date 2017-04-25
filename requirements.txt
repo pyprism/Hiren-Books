@@ -1,4 +1,4 @@
-contextlib2==0.5.4
+contextlib2==0.5.5
 Django==1.11
 django-debug-toolbar==1.7
 mock==2.0.0
