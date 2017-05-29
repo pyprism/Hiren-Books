@@ -5,7 +5,7 @@ mock==2.0.0
 pbr==3.0.1
 psycopg2==2.7.1
 python-magic==0.4.13
-raven==6.0.0
+raven==6.1.0
 six==1.10.0
 sqlparse==0.2.3
 uWSGI==2.0.15
