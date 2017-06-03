@@ -5,7 +5,6 @@ from django.contrib import messages
 from book.models import Book
 from book.forms import AddForms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db import IntegrityError
 from django.utils import timezone
 import logging
 # Create your views here.
@@ -84,8 +83,6 @@ def add_book_pdf(request):
             try:
                 form.save()
                 messages.info(request, 'New book uploaded and saved')
-            except IntegrityError:
-                messages.error(request, "The book is already exits")
         else:
             logger = logging.getLogger(__name__)
             messages.error(request, form.errors)
@@ -108,8 +105,6 @@ def add_book_url(request):
             try:
                 form.save()
                 messages.info(request, 'New Book Added')
-            except IntegrityError:
-                messages.error(request, "The book is already exits")
         else:
             logger = logging.getLogger(__name__)
             messages.error(request, form.errors)
@@ -132,8 +127,6 @@ def add_video(request):
             try:
                 form.save()
                 messages.info(request, 'New video added')
-            except IntegrityError:
-                messages.error(request, "The video is already exits")
         else:
             logger = logging.getLogger(__name__)
             messages.error(request, form.errors)
