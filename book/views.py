@@ -7,16 +7,27 @@ from book.forms import AddForms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import IntegrityError
 import datetime
+import logging
 # Create your views here.
 
 
 def index(request):
+    """
+    Serve index page
+    :param request:
+    :return:
+    """
     if request.user.is_authenticated:
         return redirect('dashboard')
     return render(request, 'login.html')
 
 
 def login(request):
+    """
+    Handle authentication
+    :param request:
+    :return:
+    """
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -25,7 +36,9 @@ def login(request):
             auth.login(request, user)
             return redirect('/dashboard/')
         else:
-            messages.error(request, 'Username/Password is not valid!')
+            troll = "Username/Password is not valid! And your password must include " \
+                    "a gang sign,a haiku and the blood of a virgin"
+            messages.error(request, troll)
             return redirect('/')
     else:
         return render(request, 'login.html')
@@ -74,7 +87,9 @@ def add_book_pdf(request):
             except IntegrityError:
                 messages.error(request, "The book is already exits")
         else:
-            messages.error(request, "A kitten died in hell !")
+            logger = logging.getLogger(__name__)
+            messages.error(request, form.errors)
+            logger.warning(form.errors)
         return redirect('/add_pdf/')
     else:
         return render(request, 'add.html')
