@@ -176,4 +176,5 @@ def book_finished(request, slug):
     book.finished = True
     book.finished_at = timezone.datetime.today()
     book.save()
+    messages.info(request, "Book marked as finished")
     return redirect('/book/' + slug + "/")
