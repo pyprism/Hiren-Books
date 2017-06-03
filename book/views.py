@@ -149,16 +149,14 @@ def book(request, slug):
     """
     if request.method == 'POST':
         book = Book.objects.get(slug=slug)
-        book.note = request.POST.get('note')
-        book.page_no = request.POST.get('page_no')
-        book.type = request.POST.get('type')
-        book.folder = request.POST.get('folder')
-        try:
-            book.current_url = request.POST.get('current_url')
-        except Exception as e:
+        form = AddForms(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "Info updated")
+        else:
             logger = logging.getLogger(__name__)
-            logger.error(e)
-        book.save()
+            logger.error(form.errors)
+            messages.error(request, form.errors)
         return redirect(request.path)
     else:
         book = Book.objects.get(slug=slug)
