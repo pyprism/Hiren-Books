@@ -7,9 +7,9 @@ import datetime
 class Book(models.Model):
     name = models.CharField(max_length=400, unique=True)
     slug = models.CharField(max_length=150, unique=True)
-    note = models.TextField()
+    note = models.TextField(null=True, blank=True)
     finished = models.BooleanField(default=False)
-    page_no = models.IntegerField(default=0)
+    page_no = models.IntegerField(default=0, null=True, blank=True)
     option = (
         ('pdf', "Pdf Book"),
         ('net', "Online Book"),
