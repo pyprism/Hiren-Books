@@ -5,7 +5,7 @@ import datetime
 
 
 class Book(models.Model):
-    name = models.CharField(max_length=400)
+    name = models.CharField(max_length=400, unique=True)
     slug = models.CharField(max_length=150, unique=True)
     note = models.TextField()
     finished = models.BooleanField(default=False)
@@ -22,6 +22,7 @@ class Book(models.Model):
     folder = models.CharField(max_length=1000, null=True, blank=True)
     current_url = models.URLField(max_length=2000, null=True, blank=True)
     added_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     finished_at = models.DateField(null=True, blank=True)
 
     def save(self, **kwargs):
