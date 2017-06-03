@@ -80,9 +80,8 @@ def add_book_pdf(request):
     if request.method == "POST":
         form = AddForms(request.POST, request.FILES)
         if form.is_valid():
-            try:
-                form.save()
-                messages.info(request, 'New book uploaded and saved')
+            form.save()
+            messages.info(request, 'New book uploaded and saved')
         else:
             logger = logging.getLogger(__name__)
             messages.error(request, form.errors)
@@ -102,9 +101,8 @@ def add_book_url(request):
     if request.method == "POST":
         form = AddForms(request.POST)
         if form.is_valid():
-            try:
-                form.save()
-                messages.info(request, 'New Book Added')
+            form.save()
+            messages.info(request, 'New Book Added')
         else:
             logger = logging.getLogger(__name__)
             messages.error(request, form.errors)
@@ -124,9 +122,8 @@ def add_video(request):
     if request.method == "POST":
         form = AddForms(request.POST)
         if form.is_valid():
-            try:
-                form.save()
-                messages.info(request, 'New video added')
+            form.save()
+            messages.info(request, 'New video added')
         else:
             logger = logging.getLogger(__name__)
             messages.error(request, form.errors)
