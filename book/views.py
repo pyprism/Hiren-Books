@@ -111,7 +111,9 @@ def add_book_url(request):
             except IntegrityError:
                 messages.error(request, "The book is already exits")
         else:
-            messages.error(request, "A kitten died in hell !")
+            logger = logging.getLogger(__name__)
+            messages.error(request, form.errors)
+            logger.warning(form.errors)
         return redirect('/add_online/')
     else:
         return render(request, 'add_online.html')
@@ -120,7 +122,7 @@ def add_book_url(request):
 @login_required
 def add_video(request):
     """
-    Add video tutorial
+    Add video tutorial link
     :param request:
     :return:
     """
@@ -133,7 +135,9 @@ def add_video(request):
             except IntegrityError:
                 messages.error(request, "The video is already exits")
         else:
-            messages.error(request, "A kitten died in hell !")
+            logger = logging.getLogger(__name__)
+            messages.error(request, form.errors)
+            logger.warning(form.errors)
         return redirect('/add_video/')
     return render(request, 'add_video.html')
 
@@ -151,8 +155,9 @@ def book(request, slug):
         book.folder = request.POST.get('folder')
         try:
             book.current_url = request.POST.get('current_url')
-        except Exception:
-            pass
+        except Exception as e:
+            logger = logging.getLogger(__name__)
+            logger.error(e)
         book.save()
         return redirect(request.path)
     else:
