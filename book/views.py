@@ -6,7 +6,7 @@ from book.models import Book
 from book.forms import AddForms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import IntegrityError
-import datetime
+from django.utils import timezone
 import logging
 # Create your views here.
 
@@ -174,6 +174,6 @@ def book_finished(request, slug):
     """
     book = Book.objects.get(slug=slug)
     book.finished = True
-    book.finished_at = datetime.date.today()
+    book.finished_at = timezone.datetime.today()
     book.save()
     return redirect('/book/' + slug + "/")
