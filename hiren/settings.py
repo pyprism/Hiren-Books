@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'book',
     'raven.contrib.django.raven_compat',
+    "compressor",
 )
 
 MIDDLEWARE = (
@@ -135,12 +136,18 @@ STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    'compressor.finders.CompressorFinder',
 )
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+# django compress
+COMPRESS_ROOT = os.path.join(BASE_DIR, "static")
+
+COMPRESS_OFFLINE = True
 
 # media settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
