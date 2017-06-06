@@ -1,5 +1,6 @@
 /static/bower
 /media/hiren
+static/CACHE/
 config.local.json
 # Logs
 *.log
