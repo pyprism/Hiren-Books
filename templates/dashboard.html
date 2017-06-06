@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h2>Books list</h2>
+    <h4>All Books/Tutorials List</h4>
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
@@ -57,5 +57,46 @@
         <br>
      Page {{ books.number }} of {{ books.paginator.num_pages }}.
     </ul>
+
+    <h4>Recently Active Books/Tutorials List</h4>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Finished</th>
+            <th>Added at</th>
+            <th>Finished at</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for book in recent %}
+                <tr>
+                <td><a href="/book/{{ book.slug }}/"> {{ book.name }}</a></td>
+                {% if book.type == 'pdf' %}
+                <td>PDF</td>
+                {% elif book.type == 'net' %}
+                <td>Online Book</td>
+                {% elif book.type == 'vid' %}
+                <td>Video Tutorial</td>
+                {% elif book.type == 'con' %}
+                <td>Conf.</td>
+                {% endif %}
+                    {% if book.finished %}
+                <td> Yes </td>
+                    {% else %}
+                    <td> No</td>
+                    {% endif %}
+                <td>{{ book.added_at }}</td>
+                {% if book.finished_at == None %}
+                    <td> </td>
+                {% else %}
+                <td> {{ book.finished_at }}</td>
+                {%  endif %}
+                </tr>
+            {% endfor %}
+
+    </table>
 
 {% endblock %}
