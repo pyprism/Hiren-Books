@@ -67,7 +67,7 @@ def dashboard(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         books = paginator.page(paginator.num_pages)
-    recent = Book.objects.all().order_by('updated_at')[:10]
+    recent = Book.objects.all().order_by('-updated_at')[:15]
     return render(request, 'dashboard.html', {"books": books, 'recent': recent})
 
 
