@@ -3,7 +3,7 @@ Django==2.2.1
 django-appconf==1.0.3
 django-compressor==2.2
 django-debug-toolbar==1.11
-mock==3.0.3
+mock==3.0.5
 pbr==5.2.0
 psycopg2==2.8.2
 python-magic==0.4.15
